@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/index3jquery.css"/>
+		<script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.fullPage.min.js" type="text/javascript" charset="utf-8"></script>
+	    <script type="text/javascript">
+	    	$(function(){
+	    		$("#myFullPage").fullpage({
+	    			sectionsColor:['#1bbc9b', '#4BBFC3', '#7BAABE', '#f90','#ccc']
+	    		});
+	    	});
+	    </script>
+	</head>
+	<body>
+		<div id="myFullPage">
+			<div class="section">
+				<h2>第一屏</h2>
+				<p>第一屏的内容</p>
+			</div>
+			<div class="section">
+				<h2>第二屏</h2>
+				<p>第二屏的内容</p>
+			</div>
+			<div class="section">
+				<div class="slide"><h3>第三屏的第一屏</h3></div>
+				<div class="slide"><h3>第三屏的第二屏</h3></div>
+				<div class="slide"><h3>第三屏的第二屏</h3></div>
+			</div>
+			<div class="section">
+				<h2>第四屏</h2>
+				<p>第四屏的内容</p>
+			</div>
+			<div class="section">
+				<h2>第五屏</h2>
+				<p>第五屏的内容</p>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+body,p,h3,h2{
+	margin: 0px;
+	padding: 0px;
+}
+html,body{
+	overflow: hidden;
+}
+.section{
+	position: relative;
+	text-align: center;
+	font: 50px "微软雅黑";
+	color: #FFFFFF;
+}
+.slide{
+	float: left;
+}
+.fp-slides {
+    z-index:1;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    -webkit-transition: all 0.3s ease-out; /* Safari<=6 Android<=4.3 */
+    transition: all 0.3s ease-out;
+}
