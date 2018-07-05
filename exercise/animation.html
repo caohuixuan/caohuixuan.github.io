@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+    <style>
+       #a{
+       	position: absolute;
+       	height: 100px;
+       	width: 100px;
+       	animation:aa 5s linear 1s infinite alternate;
+       }
+       @keyFrames aa{
+       	0%{
+       		background-color: #ccc;
+            top:0;
+            left:0;
+       	}
+       	25%{
+       		background-color: #ff0000;
+       		top:0;
+       		left: 100px;
+       	}
+       	50%{
+       		background-color: #00ff00;
+       		top:100px;
+       		left: 100px;
+       	}
+       	75%{
+       		background-color: #0000ff;
+       		top:100px;
+       		left: 0;
+       	}
+       	100%{
+       		background-color: #ffff00;
+       		top: 0;
+       		left: 0;
+       	}
+       }
+    </style>
+</head>
+<body>
+	<div id="a"></div>
+</body>
+</html>

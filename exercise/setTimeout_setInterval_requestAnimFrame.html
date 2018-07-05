@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+     #requestAnim{
+     	position: absolute;
+     	width: 100px;
+     	height: 100px;
+     	background-color: #ccc;
+     }
+     #tt{
+     	position: absolute;
+     	top: 350px;
+     }
+
+     	</style>
+	<script>
+	   var i=0;
+	   var timmer=null;
+       var settime=null;
+       var interval=null;
+       var elem = document.getElementById("requestAnim");
+        function insert(){
+        	settime=window.setTimeout(showalert,3000);
+        }
+        function showalert(){
+        	console.log("这是显示语句");
+        }
+        function clear1(){//clear是关键字，以此命名不会起作用 因为事件处理内部的作用域中有一个clear方法，优先级更靠前会覆盖自定义的方法
+        	window.clearTimeout(settime);
+        }
+        function start(){
+        	document.getElementById('text').value=i;
+        	i=i+1;
+        	timmer=window.setTimeout(start,1000);
+        }
+        function stop(){
+        	clearTimeout(timmer);
+        }
+        function changecolor(){
+        	interval=window.setInterval(freshcolor,1000);
+        }
+        function freshcolor(){
+        	var ee=document.getElementById("bb");
+        	ee.style.color=ee.style.color=="red"?"blue":"red";
+        }
+        function stopchange(){
+
+              clearInterval(interval);
+        }
+	</script>
+</head>
+<body onload="changecolor();">
+	<div id="a">
+      <h3>setTimeout</h3>
+      <button onclick="insert()">显示语句</button>
+      <button onclick="clear1()">取消显示</button>
+      <br />
+      <input type="text" id="text" value="0">
+      <button onclick="start();">计时开始</button>
+      <button onclick="stop();">计时结束</button>
+	</div>
+	<div id="b">
+      <h3>setInterval</h3>
+        <div id="bb">
+         nfdngjfndb
+        </div>
+        <button onclick="stopchange();">stop</button>
+	</div>
+	<div id="requestAnim">
+      点击运行
+	</div>
+	<button id="tt" onclick="restop();">停止</button>
+	<script>
+   var requestanimationThis;
+(function() {
+ var lastTime = 0;
+ var vendors = ['ms', 'moz', 'webkit', 'o'];
+ for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+  window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+  window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
+ }
+ 
+ if (!window.requestAnimationFrame)
+  window.requestAnimationFrame = function(callback, element) {
+   var currTime = new Date().getTime();
+   var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+   var id = window.setTimeout(function() { callback(currTime + timeToCall); }, 
+    timeToCall);
+   lastTime = currTime + timeToCall;
+   return id;
+  };
+ 
+ if (!window.cancelAnimationFrame)
+  window.cancelAnimationFrame = function(id) {
+   clearTimeout(id);
+  };
+}()); 
+   window.requestAnimFrame = (function(){//兼容浏览器
+      return  window.requestAnimationFrame       ||
+              window.webkitRequestAnimationFrame ||
+              window.mozRequestAnimationFrame    ||
+              window.oRequestAnimationFrame      ||
+              window.msRequestAnimationFrame     ||
+              function( callback ){
+                window.setTimeout(callback, 1000 / 60);
+              };
+    })();
+    window.cancelRequestAnimFrame = ( function() {
+ return window.cancelAnimationFrame ||
+  window.webkitCancelRequestAnimationFrame ||
+  window.mozCancelRequestAnimationFrame ||
+  window.oCancelRequestAnimationFrame ||
+  window.msCancelRequestAnimationFrame ||
+  clearTimeout;
+} )();
+var elem = document.getElementById("requestAnim");
+var startTime = undefined;//全局的
+function render(time){//time是局部的
+  if (time === undefined)
+    time = Date.now();//获取到当前时间的毫秒数
+  if (startTime === undefined)
+     //第一次调用的时候startTime是undefined，之后就不是了
+     //而time每次调用都等于当前时间的毫秒数
+    startTime = time;
+    //当是500的整数倍的时候，left值从0开始
+  elem.style.left = ((time - startTime)/10%500) + "px";
+}
+elem.onclick = function(){
+    (function animloop(){
+      render();
+      //这里利用requestAnimFrame方法来控制渲染的帧数
+      requestanimationThis=requestAnimFrame(animloop);
+    })();
+}
+function restop(){
+    window.cancelAnimationFrame(requestanimationThis);
+}
+
+	</script>
+}
+</body>
+</html>
